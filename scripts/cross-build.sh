@@ -142,6 +142,8 @@ build() {
     rm -rf "${STAGE_DIR}" "${BUILD_DIR}"
     mkdir -p "${STAGE_DIR}" "${BUILD_DIR}"
     export PKG_CONFIG_PATH="${STAGE_DIR}/lib/pkgconfig"
+     rm -rf /opt/cross/bin/aarch64-linux-musl-gcc
+    ln -s gcc /opt/cross/bin/aarch64-linux-musl-gcc
     rm -rf /opt/cross/bin/aarch64-linux-musl-ar
     ln -s ar /opt/cross/bin/aarch64-linux-musl-ar
     rm -rf /opt/cross/bin/aarch64-linux-musl-ranlib

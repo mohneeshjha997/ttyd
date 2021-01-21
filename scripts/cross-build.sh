@@ -135,7 +135,7 @@ build() {
     echo "=== Installing toolchain ${ALIAS} (${TARGET})..."
 
     mkdir -p "${CROSS_ROOT}" && export PATH="${PATH}:/opt/cross/bin"
-    curl -sLo- "https://musl.cc/${TARGET}-cross.tgz" | tar xz -C "${CROSS_ROOT}" --strip-components 1
+    curl -sLo- "https://musl.cc/${TARGET}-native.tgz" | tar xz -C "${CROSS_ROOT}" --strip-components 1
 
     echo "=== Building target ${ALIAS} (${TARGET})..."
 
@@ -145,9 +145,7 @@ build() {
     export PATH=$PATH:/opt/cross/bin/ 
     ls /opt/cross/bin/
     echo $PATH
-    rm -rf /opt/cross/bin/aarch64-linux-musl-ar
     ln -s /opt/cross/bin/ar /opt/cross/bin/aarch64-linux-musl-ar
-    rm -rf /opt/cross/bin/aarch64-linux-musl-ranlib
     ln -s /opt/cross/bin/ranlib /opt/cross/bin/aarch64-linux-musl-ranlib
     install_cmake_cross_file
 

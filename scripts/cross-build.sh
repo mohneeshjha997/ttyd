@@ -135,18 +135,21 @@ build() {
     echo "=== Installing toolchain ${ALIAS} (${TARGET})..."
 
     mkdir -p "${CROSS_ROOT}" && export PATH="${PATH}:/opt/cross/bin"
-    curl -sLo- "https://musl.cc/${TARGET}-native.tgz" | tar xz -C "${CROSS_ROOT}" --strip-components 1
-
+    if [ `uname -m` = 'aarch64' ]; then
+        curl -sLo- "https://musl.cc/${TARGET}-native.tgz" | tar xz -C "${CROSS_ROOT}" --strip-components 1
+    else
+        curl -sLo- "https://musl.cc/${TARGET}-native.tgz" | tar xz -C "${CROSS_ROOT}" --strip-components 1
+    fi
+    
     echo "=== Building target ${ALIAS} (${TARGET})..."
 
     rm -rf "${STAGE_DIR}" "${BUILD_DIR}"
     mkdir -p "${STAGE_DIR}" "${BUILD_DIR}"
     export PKG_CONFIG_PATH="${STAGE_DIR}/lib/pkgconfig"
-    export PATH=$PATH:/opt/cross/bin/ 
-    ls /opt/cross/bin/
-    echo $PATH
-    ln -s /opt/cross/bin/ar /opt/cross/bin/aarch64-linux-musl-ar
-    ln -s /opt/cross/bin/ranlib /opt/cross/bin/aarch64-linux-musl-ranlib
+    if [ `uname -m` = 'aarch64' ]; then
+        ln -s /opt/cross/bin/ar /opt/cross/bin/aarch64-linux-musl-ar
+        ln -s /opt/cross/bin/ranlib /opt/cross/bin/aarch64-linux-musl-ranlib
+    fi
     install_cmake_cross_file
 
     build_zlib

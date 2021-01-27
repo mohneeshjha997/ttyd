@@ -135,11 +135,11 @@ build() {
     echo "=== Installing toolchain ${ALIAS} (${TARGET})..."
 
     mkdir -p "${CROSS_ROOT}" && export PATH="${PATH}:/opt/cross/bin"
-    if [ `uname -m` = 'aarch64' ]; then
+    #if [ `uname -m` = 'aarch64' ]; then
+      #  curl -sLo- "https://musl.cc/${TARGET}-native.tgz" | tar xz -C "${CROSS_ROOT}" --strip-components 1
+    #else
         curl -sLo- "https://musl.cc/${TARGET}-native.tgz" | tar xz -C "${CROSS_ROOT}" --strip-components 1
-    else
-        curl -sLo- "https://musl.cc/${TARGET}-native.tgz" | tar xz -C "${CROSS_ROOT}" --strip-components 1
-    fi
+    #fi
     
     echo "=== Building target ${ALIAS} (${TARGET})..."
 

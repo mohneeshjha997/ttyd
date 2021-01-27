@@ -138,7 +138,7 @@ build() {
     #if [ `uname -m` = 'aarch64' ]; then
       #  curl -sLo- "https://musl.cc/${TARGET}-native.tgz" | tar xz -C "${CROSS_ROOT}" --strip-components 1
     #else
-        curl -sLo- "https://musl.cc/${TARGET}-native.tgz" | tar xz -C "${CROSS_ROOT}" --strip-components 1
+        curl -sLo- "https://musl.cc/${TARGET}-cross.tgz" | tar xz -C "${CROSS_ROOT}" --strip-components 1
     #fi
     
     echo "=== Building target ${ALIAS} (${TARGET})..."

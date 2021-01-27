@@ -146,10 +146,10 @@ build() {
     rm -rf "${STAGE_DIR}" "${BUILD_DIR}"
     mkdir -p "${STAGE_DIR}" "${BUILD_DIR}"
     export PKG_CONFIG_PATH="${STAGE_DIR}/lib/pkgconfig"
-    if [ `uname -m` = 'aarch64' ]; then
-        ln -s /opt/cross/bin/ar /opt/cross/bin/aarch64-linux-musl-ar
-        ln -s /opt/cross/bin/ranlib /opt/cross/bin/aarch64-linux-musl-ranlib
-    fi
+    #if [ `uname -m` = 'aarch64' ]; then
+      #  ln -s /opt/cross/bin/ar /opt/cross/bin/aarch64-linux-musl-ar
+     #   ln -s /opt/cross/bin/ranlib /opt/cross/bin/aarch64-linux-musl-ranlib
+    #fi
     install_cmake_cross_file
 
     build_zlib
